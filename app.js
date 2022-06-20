@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
+const cookieParser = require('cookie-parser');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controller/errorController');
@@ -38,6 +39,8 @@ if (process.env.NODE_ENV === 'development') {
 
 //Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 //limit request from same api
 const limiter = rateLimit({
@@ -71,6 +74,7 @@ app.use(
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   //     console.log('hello from the middleware');
+  // console.log(req.cookies);
   next();
 });
 
