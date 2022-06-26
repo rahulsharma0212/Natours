@@ -17,7 +17,10 @@ const reviewRouter = require(path.join(__dirname, 'routes/reviewRoutes.js'));
 const bookingRouter = require(path.join(__dirname, 'routes/bookingRoutes.js'));
 const viewRouter = require(path.join(__dirname, 'routes/viewRoutes.js'));
 
+//Start express app
 const app = express();
+
+app.enable('trust proxy');
 
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
