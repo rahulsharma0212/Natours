@@ -13,6 +13,7 @@ const globalErrorHandler = require('./controller/errorController');
 const tourRouter = require(path.join(__dirname, 'routes/tourRoutes.js'));
 const userRouter = require(path.join(__dirname, 'routes/userRoutes.js'));
 const reviewRouter = require(path.join(__dirname, 'routes/reviewRoutes.js'));
+const bookingRouter = require(path.join(__dirname, 'routes/bookingRoutes.js'));
 const viewRouter = require(path.join(__dirname, 'routes/viewRoutes.js'));
 
 const app = express();
@@ -101,6 +102,7 @@ app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
+app.use('/api/v1/bookings', bookingRouter);
 
 app.all('*', (req, res, next) => {
   // res.status(404).json({
