@@ -15,9 +15,9 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Please provide your email address'],
     validate: [validator.isEmail, 'Please provide a valid email'],
   },
-  photo:{
-    type:String,
-    default:'default.jpg'
+  photo: {
+    type: String,
+    default: 'default.jpg',
   },
   role: {
     type: String,
@@ -98,7 +98,7 @@ userSchema.methods.createPasswordResetToken = function () {
     .createHash('sha256')
     .update(resetToken)
     .digest('hex');
-  console.log({ resetToken }, this.passwordResetToken);
+  // console.log({ resetToken }, this.passwordResetToken);
 
   this.passwordResetExpires = Date.now() + 10 * 60 * 1000;
   return resetToken;
